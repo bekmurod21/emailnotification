@@ -18,11 +18,7 @@ namespace EmailNotification.Controllers
         [HttpPost]
         public async Task<IActionResult> SendAsync(EmailMessage message)
         {
-            for(int i = 0; i < 1000; i++)
-            {
                 await this.service.SendAsync(message);
-
-            }
             return Ok(); 
         }
     }
