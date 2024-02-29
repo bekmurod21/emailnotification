@@ -1,4 +1,4 @@
-name: Github Actions CI/CD
+name: Email-Notification CI-CD
  
 on:
   push:
@@ -8,7 +8,7 @@ on:
  
 env:
   REPO_NAME: ${{ github.repository }}
-  CONTAINER_NAME: email-notification-container
+  CONTAINER_NAME: email-notification
   REGISTRY: ghcr.io
   SSH_HOST: ${{ secrets.SERVER_IP }}
   SSH_USER: ${{ secrets.SERVER_USERNAME }}
@@ -19,8 +19,8 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     permissions:
-        contents: read
-        packages: write
+      contents: read
+      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -43,8 +43,9 @@ jobs:
           tags: "${{ env.REGISTRY }}/${{ env.REPO_NAME }}:${{ github.sha }}"
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPO_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPO_NAME }}:buildcache,mode=max
-
-deploy:
+ 
+  
+  deploy:
     needs: build_and_push
     runs-on: ubuntu-latest
     permissions:
