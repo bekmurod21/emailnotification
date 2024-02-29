@@ -28,7 +28,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ Bekmurod21 }}
+          username: ${{ github.actor }}
           password: ${{ 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 }}
  
       - name: Build and push Docker image
