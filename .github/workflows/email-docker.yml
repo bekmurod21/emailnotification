@@ -67,8 +67,15 @@ jobs:
           username: "${{ env.SSH_USER }}"
           key: "${{ env.SSH_KEY }}"
           script: |
+            set -e
+            echo "Debug Point 1"
             docker login -u ${{ env.DOCKERHUB_USERNAME }} -p ${{ env.DOCKERHUB_TOKEN }}
+            echo "Debug Point 2"
             docker pull ${{ env.DOCKERHUB_USERNAME }}/${{ env.CONTAINER_NAME }}:${{ github.sha }}
+            echo "Debug Point 3"
             docker stop ${{ env.CONTAINER_NAME }} || true
+            echo "Debug Point 4"
             docker rm ${{ env.CONTAINER_NAME }} || true
+            echo "Debug Point 5"
             docker run -d --name ${{ env.CONTAINER_NAME }} -p ${{ env.PORT }} ${{ env.DOCKERHUB_USERNAME }}/${{ env.CONTAINER_NAME }}:${{ github.sha }}
+            echo "Debug Point 6"
