@@ -7,7 +7,7 @@ on:
     branches: [ master ]
  
 env:
-  REPO_NAME: ${{ github.repository }}
+  REPO_NAME: bekmurod21/emailnotification
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
   CONTAINER_NAME: email-notification
